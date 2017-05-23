@@ -38,23 +38,23 @@ parameters:
       size: #RAM 4096,8192,16384,32768,65536
       ##Default production sizing
         openstack.control:
-          cpu: 4
-          ram: 8192
+          cpu: 2
+          ram: 4096
           disk_profile: small
           net_profile: default
         openstack.database:
-          cpu: 2
+          cpu: 1
           ram: 2048
           disk_profile: large
           net_profile: default
         openstack.message_queue:
-          cpu: 2
+          cpu: 1
           ram: 2048
           disk_profile: small
           net_profile: default
         openstack.telemetry:
-          cpu: 2
-          ram: 2048
+          cpu: 1
+          ram: 1024
           disk_profile: xxlarge
           net_profile: default
         openstack.proxy:
@@ -64,7 +64,7 @@ parameters:
           net_profile: default
         opencontrail.control:
           cpu: 2
-          ram: 8192
+          ram: 2048
           disk_profile: small
           net_profile: default
         opencontrail.analytics:
@@ -78,14 +78,19 @@ parameters:
           disk_profile: xxlarge
           net_profile: default
         stacklight.server:
-          cpu: 2
-          ram: 4096
+          cpu: 1
+          ram: 2048
           disk_profile: small
           net_profile: default
         stacklight.telemetry:
-          cpu: 2
-          ram: 4096
+          cpu: 1
+          ram: 2048
           disk_profile: xxlarge
+          net_profile: default
+        cicd.control:
+          cpu: 4
+          ram: 4096
+          disk_profile: large
           net_profile: default
       cluster:
         internal:
@@ -138,13 +143,13 @@ parameters:
           type: slave
           proto: manual
           name: ${_param:primary_first_nic}
-          master: bond0
-        eth2:
-          enabled: true
-          type: slave
-          proto: manual
-          name: ${_param:primary_second_nic}
-          master: bond0
+          # master: bond0
+        # eth2:
+        #   enabled: true
+        #   type: slave
+        #   proto: manual
+        #   name: ${_param:primary_second_nic}
+        #   master: bond0
         br_mgm:
           enabled: true
           proto: static
@@ -157,22 +162,22 @@ parameters:
           - ${_param:dns_server02}
           use_interfaces:
           - ${_param:deploy_nic}
-        bond0:
-          enabled: true
-          proto: manual
-          type: bond
-          use_interfaces:
-          - ${_param:primary_first_nic}
-          - ${_param:primary_second_nic}
-          slaves: ${_param:primary_first_nic} ${_param:primary_second_nic}
-          mode: active-backup
-        bond0.1:
-          name: bond0.${_param:control_vlan}
-          enabled: true
-          proto: manual
-          type: vlan
-          use_interfaces:
-          - bond0
+        # bond0:
+        #   enabled: true
+        #   proto: manual
+        #   type: bond
+        #   use_interfaces:
+        #   - ${_param:primary_first_nic}
+        #   - ${_param:primary_second_nic}
+        #   slaves: ${_param:primary_first_nic} ${_param:primary_second_nic}
+        #   mode: active-backup
+        # bond0.1:
+        #   name: bond0.${_param:control_vlan}
+        #   enabled: true
+        #   proto: manual
+        #   type: vlan
+        #   use_interfaces:
+        #   - bond0
         br_ctl:
           enabled: true
           type: bridge
@@ -180,7 +185,7 @@ parameters:
           address: ${_param:single_address}
           netmask: ${_param:control_network_netmask}
           use_interfaces:
-          - bond0.${_param:control_vlan}
+          - ${_param:primary_first_nic}
   #   system:
   #     package:
   #       linux-image-4.8.0-39-generic:

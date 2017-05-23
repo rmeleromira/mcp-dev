@@ -6,29 +6,29 @@ parameters:
     heka_aggregator_host: ${_param:stacklight_monitor_address}
     aggregator_port: 5565
     grafana_user: admin
-    grafana_password: DDDDDDDDDDDDDDDD
+    grafana_password: h1fs3v07Ek5HFDLG
     cluster_elasticsearch_port: 9200
     cluster_kibana_port: 5601
     cluster_grafana_port: 3000
-    mysql_grafana_password: DDDDDDDDDDDDDDDD
+    mysql_grafana_password: p36Qkglbi69QXhaC
     grafana_influxdb_host: ${_param:stacklight_telemetry_address}
     elasticsearch_port: 9200
-    influxdb_stacklight_password: DDDDDDDDDDDDDDDD
-    influxdb_admin_password: DDDDDDDDDDDDDDDD
+    influxdb_stacklight_password: hvVPsqd8x36URJaL
+    influxdb_admin_password: kZ1O10weFES4kwqo
     influxdb_port: 8086
     influxdb_database: lma
     influxdb_user: lma
-    influxdb_password: DDDDDDDDDDDDDDDD
+    influxdb_password: uJajuf2Q53xOSqz5
     nagios_host: ${_param:stacklight_monitor_address}
     nagios_status_port: 8001
     nagios_username: nagiosadmin
-    nagios_password: DDDDDDDDDDDDDDDD
+    nagios_password: lG7eddCzsSERhNLo
     nagios_notification_smtp_server: 127.0.0.1
     nagios_notification_from: 'nagios@localhost'
     nagios_notification_email: 'root@localhost'
-    stacklight_log_keepalived_password: DDDDDDDDDDDDDDDD
-    stacklight_monitor_keepalived_password: DDDDDDDDDDDDDDDD
-    stacklight_telemetry_keepalived_password: DDDDDDDDDDDDDDDD
+    stacklight_log_keepalived_password: SNySx4G7bfBZiEg0
+    stacklight_monitor_keepalived_password: NoOF8ijRPCuUfqrn
+    stacklight_telemetry_keepalived_password: qpW9xZDkQzHGECot
     stacklight_environment: ${_param:cluster_domain}
 
     # Stacklight Monitor

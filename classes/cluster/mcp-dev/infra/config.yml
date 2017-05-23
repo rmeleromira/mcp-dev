@@ -32,7 +32,7 @@ parameters:
     single_address: ${_param:infra_config_address}
     deploy_address: ${_param:infra_config_deploy_address}
     linux_system_codename: xenial
-    salt_api_password_hash: "<<WILL_BE_GENERATED>>"
+    salt_api_password_hash: "$6$jCBJiEPZvXYaYr9.$tdNvZbCfpptEq9oprSqTT0V3tiQPNK9W57j92lxxwqkZ82nSqNxheGkTg4DLeui1GroVgBF0zTSZ689qFEKRk0"
     salt_master_host: ${_param:infra_config_address}
   reclass:
     storage:

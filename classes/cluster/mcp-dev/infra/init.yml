@@ -18,19 +18,19 @@ parameters:
 
     # infra service addresses
     infra_config_hostname: cfg01
-    infra_config_address: 192.168.11.90
-    infra_config_deploy_address: 192.168.10.90
+    infra_config_address: 192.168.11.10
+    infra_config_deploy_address: 192.168.10.10
     
     cluster_domain: mcp-dev.local
     cluster_name: mcp-dev
     cluster_public_host: ${_param:openstack_proxy_address}
     infra_kvm_address: 192.168.11.240
-    infra_kvm_node01_address: 192.168.11.241
-    infra_kvm_node02_address: 192.168.11.242
-    infra_kvm_node03_address: 192.168.11.243
-    infra_kvm_node01_deploy_address: 192.168.10.241
-    infra_kvm_node02_deploy_address: 192.168.10.242
-    infra_kvm_node03_deploy_address: 192.168.10.243
+    infra_kvm_node01_address: 192.168.11.11
+    infra_kvm_node02_address: 192.168.11.12
+    infra_kvm_node03_address: 192.168.11.13
+    infra_kvm_node01_deploy_address: 192.168.10.11
+    infra_kvm_node02_deploy_address: 192.168.10.12
+    infra_kvm_node03_deploy_address: 192.168.10.13
     infra_kvm_node01_hostname: kvm01
     infra_kvm_node02_hostname: kvm02
     infra_kvm_node03_hostname: kvm03
@@ -47,7 +47,7 @@ parameters:
     dns_server01: 8.8.8.8
     dns_server02: 8.8.4.4
     deploy_network_netmask: 255.255.255.0
-    deploy_network_gateway: 
+    deploy_network_gateway: 192.168.10.1
 
     linux_dhcp_interface:
       enabled: true
@@ -62,7 +62,7 @@ parameters:
       name_servers:
         - ${_param:dns_server01}
         - ${_param:dns_server02}
-    tenant_network_gateway: 
+    tenant_network_gateway: 172.19.69.1
 
   salt:
     minion:

@@ -44,17 +44,17 @@ parameters:
     cluster_node03_name: ${_param:cicd_control_node03_hostname}
     cluster_node03_address: ${_param:cicd_control_node03_address}
     keepalived_vip_virtual_router_id: 180
-    keepalived_vip_password: MMMMMMMMMMMMMMMM
+    keepalived_vip_password: KzI8t001RsUVMov8
     keepalived_vip_interface: ens3
     cluster_vip_address: ${_param:control_vip_address}
     control_vip_address: ${_param:cicd_control_address}
     cluster_public_host: ${_param:control_vip_address}
-    salt_api_password: <<WILL_BE_GENERATED>>
+    salt_api_password: password
     # Docker images and versions
-    docker_registry_http_secret: MMMMMMMMMMMMMMMM
+    docker_registry_http_secret: jLq5hGGj6O3e7CPD
     # CI/CD service databases
-    mysql_admin_password: MMMMMMMMMMMMMMMM
-    mysql_gerrit_password: MMMMMMMMMMMMMMMM
+    mysql_admin_password: vL8aRIA4Gc4Q30bW
+    mysql_gerrit_password: QR3cuGJfUQBbz6tU
 
     # Proxy
     cluster_ssl_certificate:
@@ -74,9 +74,9 @@ parameters:
     openldap_organisation: "${_param:cluster_name}"
     openldap_dn: "dc=${_param:cluster_name},dc=local"
     openldap_domain: "${_param:cluster_domain}"
-    openldap_admin_password: MMMMMMMMMMMMMMMM
-    openldap_config_password: MMMMMMMMMMMMMMMM
-    openldap_readonly_password: MMMMMMMMMMMMMMMM
+    openldap_admin_password: 3rR4CXmXPMoo2H0i
+    openldap_config_password: P5min1aAK6tQbOOR
+    openldap_readonly_password: pRTOrH1BgQEEx7JU
 
     # Jenkins
     jenkins_slave_user: admin
@@ -89,9 +89,35 @@ parameters:
     jenkins_slave_password: ${_param:jenkins_admin_password}
     jenkins_client_password: ${_param:jenkins_admin_password}
     jenkins_admin_email: ${_param:admin_email}
-    jenkins_admin_public_key: <<WILL_BE_GENERATED>>
+    jenkins_admin_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCnFlMttZgvhoO3k/OH65ktDdS3OxkzRyEtmtN3DBPKjTVrfSh3Drorre4vBDdGzSDIKWAjrsOO+AuWCFqlquPkTEz09P5gDEVKvgml6AndVlSLGQnal1aQfobErJHKtGIwnc3x+4m/u75YCHWuN8Xs+IyWSkz8X/h5OmdEYwoYR0HBox8JF2i36lNs+Vc0bP+/4EQZqtV/sstGlzKXX4+1bSqutu1yRBhMZbsNy0tVcYJbVivB2/I2EtgwIDSWk6l37wdDn/tK4d55ZGpon5eEIEh9bbBc7pBN4o7vgrRe7lp73dFQD9blvzNyyB0VrCmB2MxAeGXz4D//OdFYOPUD root@cfg01
     jenkins_admin_private_key: |
-      <<WILL_BE_GENERATED>>
+      -----BEGIN RSA PRIVATE KEY-----
+      MIIEpQIBAAKCAQEApxZTLbWYL4aDt5Pzh+uZLQ3UtzsZM0chLZrTdwwTyo01a30o
+      dw66K63uLwQ3Rs0gyClgI67DjvgLlghaparj5ExM9PT+YAxFSr4JpegJ3VZUixkJ
+      2pdWkH6GxKyRyrRiMJ3N8fuJv7u+WAh1rjfF7PiMlkpM/F/4eTpnRGMKGEdBwaMf
+      CRdot+pTbPlXNGz/v+BEGarVf7LLRpcyl1+PtW0qrrbtckQYTGW7DctLVXGCW1Yr
+      wdvyNhLYMCA0lpOpd+8HQ5/7SuHeeWRqaJ+XhCBIfW2wXO6QTeKO74K0Xu5ae93R
+      UA/W5b8zcsgdFawpgdjMQHhl8+A//znRWDj1AwIDAQABAoIBAD7tT4JFg/1SIcU/
+      uVYVSukG7nfbkBAZ18r/JmkNaV69c8L5rgW4zDCrHqsiYVcO5iu8OXL23Lu5e1OT
+      7d+6zn0qp0kSA8NUm7wcejG7hAuR+eExGt7yZC2jGUp026uF5/z7UZay7xwArx0k
+      gn2Mj8RBj2ECtp/N3Rx6/G1rB2BAyhx8bzt/vdTAmXyj+509UWJvBwrLKfImgpo8
+      b6lbiCoDxPGRgKMZ6Fr1qati+GMl8t2y2tXETzZE8PLe1CFrp5cx/kfyd+INMzFe
+      1MX5h9yOD8T9jkykDRNAF6m2V7Kah1LxNqWz8zjoFNhx12WIAcgT+MpsJphMOYar
+      788TaMECgYEA0b9QywdcqvUyiJdZqUz/u5R7s/bdhG0tAvNV6gUs7flFCW/MB+54
+      TyeCBhRe+4SfLUW+LPSB3l5KQolkupBJeWt5so2kp/7MULE4EV1M03q6pZL8nPzv
+      oeL+QJw8/Cwqa+TvdSb4R5hV+5IqZibKCAdngvvEgJyNP863gt246PECgYEAy+7B
+      JRBn8E7r1hCVU1LZgFRLomR0Rr+/9hQURTZ0v1dXn5UvyOccq/LQSL4haHVL1Dol
+      tjvSYbroD6XdB6PstJKHvHOX9suApDiK4EktqB1VKZLzep16HH81bPyau+bR2hRS
+      eWENgpkncSqfgA0noT0ln9QTFDJkQu8WpBPzXTMCgYEAzWXehpPVCY1IST59jS9c
+      F6NWaGvNjYskUwlcDum2j+xU0OLsGLBMnKcBy1ZTlVbQUhNEIt3l9466heHqBFCb
+      ww2ehV3z6pe4GSUS1N5bB5XeBZqlSk7fk9aoSTk293OAr1vnqv/YjrP9L3h5kMNX
+      gPlPQpOuYIvuPpf+WWcrVuECgYEAyImqCQaPDzKsmz6HeP6Zv6YlEjXyWbgpzpSE
+      MmOQfrAnDFiqOsd53GTUCRReyde+j532g7Nj+JLRrMGQDvlVxWPqcpjBMQGBKPwp
+      JNERQqZFnrJRF5xP/kHhiaEFkA01A1zElXOo02pD7PbbDhLhi58Tpo3njQ7YpTFz
+      dDniMR0CgYEAgxgCp5ZMdku2vJ7k2vs/clPEfgA9g4i0+aCwa++6OMZdoZm6ByDj
+      CTaUB5CPvUeZwY10Ny4IdSf8nDpBxr1oLv9PdZlIjul/mqqGpWm187C9dZtdKNIl
+      BnxARPP6y0lGfjl7+PhNsfO0JRA3mdv4lKCDLA8ZI7UXESRJ6I5tqPk=
+      -----END RSA PRIVATE KEY-----
     # Jobs params
     jenkins_gerrit_url: ssh://admin@${_param:haproxy_gerrit_bind_host}:${_param:haproxy_gerrit_ssh_bind_port}
     jenkins_aptly_api_url: http://${_param:haproxy_aptly_api_bind_host}:${_param:haproxy_aptly_api_bind_port}
