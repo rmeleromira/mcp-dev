@@ -1,0 +1,17 @@
+classes:
+- cluster.mcp-dev.infra.kvm
+parameters:
+  _param:
+    deploy_address: 192.168.10.242
+    keepalived_vip_priority: 101
+    linux_system_codename: xenial
+    public_address: 192.168.11.242
+    salt_master_host: 192.168.10.90
+    single_address: 192.168.11.242
+    storage_address: 192.168.11.242
+  linux:
+    system:
+      name: kvm02
+      domain: mcp-dev.local
+      cluster: default
+      environment: prd

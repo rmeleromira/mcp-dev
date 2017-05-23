@@ -1,0 +1,18 @@
+classes:
+- cluster.mcp-dev.stacklight.monitor
+- system.grafana.client.single
+- system.kibana.client.single
+parameters:
+  _param:
+    keepalived_vip_priority: 103
+    linux_system_codename: xenial
+    rabbitmq_cluster_role: master
+    redis_cluster_role: master
+    salt_master_host: 192.168.10.90
+    single_address: 192.168.11.71
+  linux:
+    system:
+      name: mon01
+      domain: mcp-dev.local
+      cluster: default
+      environment: prd

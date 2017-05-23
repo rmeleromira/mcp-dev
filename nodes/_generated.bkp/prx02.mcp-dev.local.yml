@@ -1,0 +1,14 @@
+classes:
+- cluster.mcp-dev.openstack.proxy
+parameters:
+  _param:
+    keepalived_vip_priority: 101
+    linux_system_codename: xenial
+    salt_master_host: 192.168.10.90
+    single_address: 192.168.11.82
+  linux:
+    system:
+      name: prx02
+      domain: mcp-dev.local
+      cluster: default
+      environment: prd

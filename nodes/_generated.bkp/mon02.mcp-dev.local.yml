@@ -1,0 +1,16 @@
+classes:
+- cluster.mcp-dev.stacklight.monitor
+parameters:
+  _param:
+    keepalived_vip_priority: 102
+    linux_system_codename: xenial
+    rabbitmq_cluster_role: slave
+    redis_cluster_role: slave
+    salt_master_host: 192.168.10.90
+    single_address: 192.168.11.72
+  linux:
+    system:
+      name: mon02
+      domain: mcp-dev.local
+      cluster: default
+      environment: prd

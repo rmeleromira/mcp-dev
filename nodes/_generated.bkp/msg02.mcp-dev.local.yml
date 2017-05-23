@@ -1,0 +1,15 @@
+classes:
+- cluster.mcp-dev.openstack.message_queue
+parameters:
+  _param:
+    keepalived_vip_priority: 102
+    linux_system_codename: xenial
+    rabbitmq_cluster_role: slave
+    salt_master_host: 192.168.10.90
+    single_address: 192.168.11.42
+  linux:
+    system:
+      name: msg02
+      domain: mcp-dev.local
+      cluster: default
+      environment: prd
