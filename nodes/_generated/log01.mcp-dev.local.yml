@@ -1,0 +1,16 @@
+classes:
+- cluster.mcp-dev.stacklight.log
+- cluster.mcp-dev.stacklight.log_curator
+- system.elasticsearch.client.single
+parameters:
+  _param:
+    keepalived_vip_priority: 103
+    linux_system_codename: xenial
+    salt_master_host: 192.168.10.10
+    single_address: 192.168.11.61
+  linux:
+    system:
+      name: log01
+      domain: mcp-dev.local
+      cluster: default
+      environment: prd

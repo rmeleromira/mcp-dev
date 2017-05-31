@@ -30,9 +30,9 @@ parameters:
     cluster_node03_address: ${_param:infra_kvm_node03_address}
     keepalived_vip_interface: br_ctl
     keepalived_vip_virtual_router_id: 69
-    deploy_nic: eth0
-    primary_first_nic: eth1
-    primary_second_nic: eth2
+    deploy_nic: eth1
+    primary_first_nic: eth2
+    primary_second_nic: eth3
   salt:
     control:
       size: #RAM 4096,8192,16384,32768,65536
@@ -102,17 +102,17 @@ parameters:
             mdb03:
               image: ${_param:salt_control_xenial_image}
             ctl01:
-              image: ${_param:salt_control_xenial_image}
+              image: ${_param:salt_control_trusty_image}
             ctl02:
-              image: ${_param:salt_control_xenial_image}
+              image: ${_param:salt_control_trusty_image}
             ctl03:
-              image: ${_param:salt_control_xenial_image}
+              image: ${_param:salt_control_trusty_image}
             dbs01:
-              image: ${_param:salt_control_xenial_image}
+              image: ${_param:salt_control_trusty_image}
             dbs02:
-              image: ${_param:salt_control_xenial_image}
+              image: ${_param:salt_control_trusty_image}
             dbs03:
-              image: ${_param:salt_control_xenial_image}
+              image: ${_param:salt_control_trusty_image}
             msg01:
               image: ${_param:salt_control_xenial_image}
             msg02:
@@ -140,7 +140,7 @@ parameters:
           name: ${_param:deploy_nic}
         eth1:
           enabled: true
-          type: slave
+          type: eth
           proto: manual
           name: ${_param:primary_first_nic}
           # master: bond0

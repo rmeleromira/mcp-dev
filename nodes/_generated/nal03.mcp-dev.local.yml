@@ -1,0 +1,15 @@
+classes:
+- cluster.mcp-dev.opencontrail.analytics
+parameters:
+  _param:
+    keepalived_vip_priority: 101
+    linux_system_codename: trusty
+    opencontrail_database_id: 3
+    salt_master_host: 192.168.10.10
+    single_address: 192.168.11.33
+  linux:
+    system:
+      name: nal03
+      domain: mcp-dev.local
+      cluster: default
+      environment: prd

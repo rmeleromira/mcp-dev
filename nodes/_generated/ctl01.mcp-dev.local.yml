@@ -1,0 +1,17 @@
+classes:
+- cluster.mcp-dev.openstack.control
+- cluster.mcp-dev.openstack.control_init
+parameters:
+  _param:
+    keepalived_vip_priority: 103
+    linux_system_codename: trusty
+    opencontrail_database_id: 1
+    rabbitmq_cluster_role: master
+    salt_master_host: 192.168.10.10
+    single_address: 192.168.11.121
+  linux:
+    system:
+      name: ctl01
+      domain: mcp-dev.local
+      cluster: default
+      environment: prd

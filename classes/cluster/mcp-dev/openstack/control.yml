@@ -2,7 +2,7 @@ classes:
 - system.linux.system.repo.ubuntu
 - system.linux.system.repo.mcp.extra
 - system.linux.system.repo.mcp.openstack
-- system.linux.system.repo.saltstack.xenial
+- system.linux.system.repo.saltstack.trusty
 - system.linux.system.repo.mcp.contrail
 - system.memcached.server.single
 - system.ceilometer.client
@@ -23,7 +23,7 @@ classes:
 - cluster.mcp-dev.infra
 parameters:
   _param:
-    keepalived_vip_interface: ens3
+    keepalived_vip_interface: eth1
     keepalived_vip_virtual_router_id: 50
     cluster_vip_address: ${_param:openstack_control_address}
     cluster_local_address: ${_param:single_address}
@@ -37,4 +37,5 @@ parameters:
   linux:
     network:
       interface:
-        ens3: ${_param:linux_single_interface}
+        eth1: ${_param:linux_single_interface}
+

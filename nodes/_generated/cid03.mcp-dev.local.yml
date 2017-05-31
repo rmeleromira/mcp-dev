@@ -1,0 +1,15 @@
+classes:
+- cluster.mcp-dev.cicd.control.manager
+parameters:
+  _param:
+    cicd_database_id: 3
+    keepalived_vip_priority: 101
+    linux_system_codename: xenial
+    salt_master_host: 192.168.10.10
+    single_address: 192.168.11.93
+  linux:
+    system:
+      name: cid03
+      domain: mcp-dev.local
+      cluster: default
+      environment: prd
