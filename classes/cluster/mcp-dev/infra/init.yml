@@ -50,6 +50,7 @@ parameters:
     deploy_network_netmask: 255.255.255.0
     deploy_network_gateway: 192.168.10.1
 
+    single_gateway: 192.168.11.221
     linux_dhcp_interface:
       enabled: true
       type: eth
@@ -60,6 +61,8 @@ parameters:
       proto: static
       address: ${_param:single_address}
       netmask: ${_param:control_network_netmask}
+      gateway: ${_param:single_gateway}
+      mtu: 1450
       name_servers:
         - ${_param:dns_server01}
         - ${_param:dns_server02}

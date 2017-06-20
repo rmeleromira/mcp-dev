@@ -123,6 +123,8 @@ parameters:
     #billometer_identity_token: ${_param:keystone_service_token}
   linux:
     network:
+      interface:
+        eth0: ${_param:linux_dhcp_interface}
       host:
         prx:
           address: ${_param:openstack_proxy_address}

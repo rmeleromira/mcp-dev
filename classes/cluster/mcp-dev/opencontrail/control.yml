@@ -31,6 +31,13 @@ parameters:
     opencontrail_router02_hostname: rtr02
     opencontrail_router02_address: 192.168.11.101
   linux:
+    storage:
+      swap:
+        swap1:
+          enabled: true
+          engine: file
+          device: /var/swap1
+          size: 8000
     network:
       interface:
         eth1: ${_param:linux_single_interface}

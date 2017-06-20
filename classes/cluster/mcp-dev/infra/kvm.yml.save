@@ -33,7 +33,6 @@ parameters:
     deploy_nic: eth1
     primary_first_nic: eth2
     primary_second_nic: eth3
-    ctl_gateway: 192.168.11.221
   salt:
     control:
       size: #RAM 4096,8192,16384,32768,65536
@@ -65,12 +64,12 @@ parameters:
           net_profile: default
         opencontrail.control:
           cpu: 2
-          ram: 8192
+          ram: 2048
           disk_profile: small
           net_profile: default
         opencontrail.analytics:
           cpu: 2
-          ram: 8192
+          ram: 4096
           disk_profile: large
           net_profile: default
         stacklight.log:
@@ -139,6 +138,7 @@ parameters:
           type: eth
           proto: manual
           name: ${_param:deploy_nic}
+          
         eth1:
           enabled: true
           type: eth
@@ -155,10 +155,9 @@ parameters:
           enabled: true
           proto: static
           type: bridge
-          mtu: 1450
           address: ${_param:deploy_address}
           netmask: ${_param:deploy_network_netmask}
-#          gateway: ${_param:deploy_network_gateway}
+          gateway: ${_param:deploy_network_gateway}
           name_servers:
           - ${_param:dns_server01}
           - ${_param:dns_server02}
@@ -184,9 +183,7 @@ parameters:
           enabled: true
           type: bridge
           proto: static
-          mtu: 1450
           address: ${_param:single_address}
-          gateway: ${_param:ctl_gateway}
           netmask: ${_param:control_network_netmask}
           use_interfaces:
           - ${_param:primary_first_nic}

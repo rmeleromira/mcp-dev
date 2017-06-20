@@ -20,6 +20,7 @@ parameters:
     cluster_node02_address: ${_param:openstack_telemetry_node02_address}
     cluster_node03_hostname: ${_param:openstack_telemetry_node03_hostname}
     cluster_node03_address: ${_param:openstack_telemetry_node03_address}
+#    single_gateway: 192.168.11.221
   linux:
     network:
       interface:

@@ -134,7 +134,7 @@ parameters:
     gerrit_ldap_bind_password: ${_param:openldap_admin_password}
     gerrit_ldap_account_base: ou=people,${_param:openldap_dn}
     gerrit_ldap_group_base: ou=groups,${_param:openldap_dn}
-
+    single_gateway: 192.168.11.221
   linux:
     system:
       package:
