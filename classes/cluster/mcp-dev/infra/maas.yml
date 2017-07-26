@@ -1,0 +1,85 @@
+classes:
+- system.maas.region.single
+parameters:
+  _param:
+    maas_admin_password: testing
+    maas_db_password: testing
+  linux:
+    system:
+      enabled: true
+      repo:
+        dell:
+          architectures: amd64
+          key_server: pool.sks-keyservers.net
+          key_id: 1285491434D8786F
+          source: deb [arch=amd64] http://linux.dell.com/repo/community/ubuntu xenial openmanage/840
+      package:
+        build-essential:
+          version: latest
+        srvadmin-all:
+          version: latest
+  maas:
+    region:
+      salt_master_ip: 192.168.11.10
+      theme: mirantis
+      bind:
+        host: 192.168.11.14:5240
+        port: 5240
+      admin:
+        username: mirantis
+        password: mirantis
+        email:  email@example.com
+      database:
+        engine: null
+        host: localhost
+        name: maasdb
+        password: qSJXYq9OO5zR
+        username: maas
+      enabled: true
+      user: mirantis
+      fabrics:
+        pxe_network:
+          description: Fabric for pxe_network
+      machines:
+        ceph01:
+          interface:
+            gateway: 192.168.10.221
+            ip: 192.168.10.15
+            mac: 00:1d:09:27:2c:5c
+            subnet: 192.168.11.0/24
+          power_type: drac
+
+          power_parameters:
+            power_address: 192.168.10.171
+#            power_type: drac
+            power_password: root
+            power_user: root
+#      subnets:
+#        pxe_network:
+#          cidr: 192.168.10.0/24
+#          fabric: pxe_network
+#          gateway_ip: 192.168.10.221
+#          iprange:
+#            end: 192.168.201.100
+#            start: 192.168.201.200
+      domain: mcp-dev.local
+#      commissioning_scripts:
+#        newscript.sh: /root/commissioning-script.sh
+      maas_config:
+#        http_proxy: http://192.168.9.2:3142
+#        commissioning_distro_series: xenial
+#        default_distro_series: xenial
+#        default_osystem: 'ubuntu'
+        default_storage_layout: lvm
+        disk_erase_with_secure_erase: true
+        dnssec_validation: 'no'
+        enable_third_party_drivers: true
+        maas_name: mas01
+        active_discovery_interval: '600'
+#        ntp_external_only: true
+#        ntp_servers: 192.168.9.252 192.168.9.253
+        upstream_dns: 8.8.8.8
+#        enable_http_proxy: true
+        default_min_hwe_kernel: ''
+      sshprefs:
+        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDS41baIsujEVKr7IlXNJyK5Qpcc3gk9FtyxAz0GfdLBZDwny9OoUV9ruPMxkJ/vphqlxkWcxA2XjvPmlKqQOIwuZasaRE7lC+vGfzAsF/84v0Q3cZOSRNPywTIkXjISEWefGY+h0OW4NdGs/JyZYQDObZe8w1TZHe6o73/WAVlAcASB7aPJW0olrt7fefDOOI5KJhvgNacAq8NiL4imXQqy2xzDmdusgo5+qjTG9FHOGuQ1tfafPmN+lG7q7zxh9Ji0otH9nyKPTQ4L2IJ33wguOENpHhTyodvLjnnDRrS8KlMIQalBJXYDlzFUcmxjUpoik/gsUwLRrJID0atGUin root@mas01

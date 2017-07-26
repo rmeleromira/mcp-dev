@@ -1,15 +1,13 @@
 classes:
-- cluster.mcp-dev.stacklight.log
-- cluster.mcp-dev.stacklight.log_curator
+- cluster.mcp-dev.infra.maas
 parameters:
   _param:
-    keepalived_vip_priority: 102
     linux_system_codename: xenial
     salt_master_host: 192.168.10.10
-    single_address: 192.168.11.62
+    single_address: 192.168.10.14
   linux:
     system:
-      name: log02
+      name: mas01
       domain: mcp-dev.local
       cluster: default
       environment: prd

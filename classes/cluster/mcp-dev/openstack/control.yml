@@ -1,4 +1,5 @@
 classes:
+- system.opencontrail.client.cluster
 - system.linux.system.repo.ubuntu
 - system.linux.system.repo.mcp.extra
 - system.linux.system.repo.mcp.openstack
@@ -14,6 +15,7 @@ classes:
 - system.nova.control.cluster
 - system.cinder.control.cluster
 - system.cinder.volume.single
+- system.heat.server.resource.contrail
 - system.heat.server.cluster
 - system.haproxy.proxy.listen.openstack.nova-placement
 - system.haproxy.proxy.listen.openstack.glare
@@ -39,4 +41,12 @@ parameters:
       interface:
 #        eth0: ${_param:linux_dhcp_interface}
         eth1: ${_param:linux_single_interface}
-
+  glance:
+    server:
+      policy:
+        add_image: "role:admin"
+  nova:
+    server:
+      policy:
+        add_image: "role:admin"
+  

@@ -34,9 +34,20 @@ parameters:
     linux_system_codename: xenial
     salt_api_password_hash: "$6$jCBJiEPZvXYaYr9.$tdNvZbCfpptEq9oprSqTT0V3tiQPNK9W57j92lxxwqkZ82nSqNxheGkTg4DLeui1GroVgBF0zTSZ689qFEKRk0"
     salt_master_host: ${_param:infra_config_address}
+    infra_maas_node01_hostname: mas01
+    infra_maas_node01_deploy_address: 192.168.10.14
   reclass:
     storage:
       node:
+        infra_maas_node01:
+          name: ${_param:infra_maas_node01_hostname}
+          domain: ${_param:cluster_domain}
+          classes:
+          - cluster.${_param:cluster_name}.infra.maas
+          params:
+            salt_master_host: ${_param:infra_config_deploy_address}
+            linux_system_codename: xenial
+            single_address: ${_param:infra_maas_node01_deploy_address}        
         infra_kvm_node01:
           params:
             keepalived_vip_priority: 100

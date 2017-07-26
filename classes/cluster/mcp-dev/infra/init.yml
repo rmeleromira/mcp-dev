@@ -35,6 +35,7 @@ parameters:
     infra_kvm_node01_hostname: kvm01
     infra_kvm_node02_hostname: kvm02
     infra_kvm_node03_hostname: kvm03
+    infra_maas_node01_hostname: mas01
 
     glusterfs_node01_address: ${_param:infra_kvm_node01_address}
     glusterfs_node02_address: ${_param:infra_kvm_node02_address}
