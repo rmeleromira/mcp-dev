@@ -7,17 +7,14 @@ classes:
   - system.glusterfs.client.volume.jenkins
   - system.glusterfs.client.volume.registry
   - system.glusterfs.client.volume.salt_pki
+  - system.glusterfs.client.volume.mysql
   - system.glusterfs.client.volume.openldap
  #- system.glusterfs.client.volume.salt
   # Docker
   - system.docker.host
 
-  # Docker services
-  - system.docker.swarm.stack.aptly
-  - system.docker.swarm.stack.docker
-  - system.docker.swarm.stack.gerrit
-  - system.docker.swarm.stack.jenkins
-  - system.docker.swarm.stack.ldap
+  # Generate aptly-publisher config to use for jenkins slaves
+  - system.aptly.client.publisher
 
   # Keepalived
   - system.keepalived.cluster.instance.cicd_control_vip
@@ -44,17 +41,17 @@ parameters:
     cluster_node03_name: ${_param:cicd_control_node03_hostname}
     cluster_node03_address: ${_param:cicd_control_node03_address}
     keepalived_vip_virtual_router_id: 180
-    keepalived_vip_password: KzI8t001RsUVMov8
+    keepalived_vip_password: Vmm25njq9dES0R9l
     keepalived_vip_interface: ens3
     cluster_vip_address: ${_param:control_vip_address}
     control_vip_address: ${_param:cicd_control_address}
     cluster_public_host: ${_param:control_vip_address}
     salt_api_password: password
     # Docker images and versions
-    docker_registry_http_secret: jLq5hGGj6O3e7CPD
+    docker_registry_http_secret: QdEtjbMEtHt3KkUJ
     # CI/CD service databases
-    mysql_admin_password: vL8aRIA4Gc4Q30bW
-    mysql_gerrit_password: QR3cuGJfUQBbz6tU
+    mysql_admin_password: dXDz2SMqhCFs8Nf5
+    mysql_gerrit_password: fnPoK6AAvB0y08Ga
 
     # Proxy
     cluster_ssl_certificate:
@@ -62,7 +59,6 @@ parameters:
       pem_file: /etc/haproxy/ssl/${_param:cluster_public_host}-all.pem
     haproxy_bind_address: ${_param:cluster_vip_address}
     haproxy_mysql_source_port: 13306
-    salt_minion_ca_host: ${_param:infra_config_hostname}.${_param:cluster_domain}
 
     # Aptly
     aptly_gpg_keypair_id: none
@@ -72,11 +68,11 @@ parameters:
     aptly_gpg_private_key: none
     # OpenLDAP
     openldap_organisation: "${_param:cluster_name}"
-    openldap_dn: "dc=${_param:cluster_name},dc=local"
-    openldap_domain: "${_param:cluster_domain}"
-    openldap_admin_password: 3rR4CXmXPMoo2H0i
-    openldap_config_password: P5min1aAK6tQbOOR
-    openldap_readonly_password: pRTOrH1BgQEEx7JU
+    openldap_dn: "dc=mcp-dev,dc=local"
+    openldap_domain: "mcp-dev.local"
+    openldap_admin_password: a9DtTtBz6fHkYPXH
+    openldap_config_password: 8Cq8pemFSpeGyCM4
+    openldap_readonly_password: CcvOIuDpACfUAkoR
 
     # Jenkins
     jenkins_slave_user: admin
@@ -135,6 +131,7 @@ parameters:
     gerrit_ldap_account_base: ou=people,${_param:openldap_dn}
     gerrit_ldap_group_base: ou=groups,${_param:openldap_dn}
     single_gateway: 192.168.11.221
+
   linux:
     system:
       package:

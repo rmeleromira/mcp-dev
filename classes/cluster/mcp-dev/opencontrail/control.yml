@@ -8,6 +8,7 @@ classes:
 - system.linux.system.repo.cassandra
 - system.opencontrail.control.control
 - system.opencontrail.client.cluster
+- system.zookeeper.backup.client.single
 - system.opencontrail.client.resource.edge_routers
 - system.opencontrail.client.resource.control_node
 - system.opencontrail.client.resource.config_node
@@ -31,13 +32,6 @@ parameters:
     opencontrail_router02_hostname: rtr02
     opencontrail_router02_address: 192.168.11.101
   linux:
-    storage:
-      swap:
-        swap1:
-          enabled: true
-          engine: file
-          device: /var/swap1
-          size: 8000
     network:
       interface:
         eth1: ${_param:linux_single_interface}

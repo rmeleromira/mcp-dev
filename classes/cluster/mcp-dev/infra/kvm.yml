@@ -1,8 +1,9 @@
 classes:
-- system.linux.system.repo.saltstack.xenial
 - system.linux.system.repo.mcp.openstack
+- system.linux.system.repo.mcp.extra
 - system.linux.system.repo.ubuntu
 - system.linux.system.repo.glusterfs
+- system.linux.system.repo.saltstack.xenial
 - service.keepalived.cluster.single
 - system.glusterfs.server.cluster
 - system.glusterfs.server.volume.salt_pki
@@ -16,12 +17,10 @@ classes:
 - system.salt.control.cluster.openstack_database_cluster
 - system.salt.control.cluster.openstack_message_queue_cluster
 - system.salt.control.cluster.openstack_telemetry_cluster
-- system.salt.control.cluster.stacklight_server_cluster
+- system.salt.control.cluster.openstack_benchmark_single
 - system.salt.control.cluster.stacklight_log_cluster
 - system.salt.control.cluster.stacklight_telemetry_cluster
 - system.salt.control.cluster.cicd_control_cluster
-#- system.maas.region.single
-- system.salt.control.cluster.infra_maas_single
 - cluster.mcp-dev.cicd.gluster
 - cluster.mcp-dev.infra
 parameters:
@@ -41,59 +40,54 @@ parameters:
       size: #RAM 4096,8192,16384,32768,65536
       ##Default production sizing
         openstack.control:
-          cpu: 2
-          ram: 4096
+          cpu: 8
+          ram: 32768
           disk_profile: small
           net_profile: default
         openstack.database:
-          cpu: 1
-          ram: 2048
+          cpu: 8
+          ram: 16384
           disk_profile: large
           net_profile: default
         openstack.message_queue:
-          cpu: 1
-          ram: 2048
+          cpu: 8
+          ram: 32768
           disk_profile: small
           net_profile: default
         openstack.telemetry:
-          cpu: 1
-          ram: 1024
+          cpu: 8
+          ram: 32768
           disk_profile: xxlarge
           net_profile: default
         openstack.proxy:
-          cpu: 1
-          ram: 1024
+          cpu: 4
+          ram: 8192
           disk_profile: small
           net_profile: default
         opencontrail.control:
-          cpu: 2
-          ram: 8192
+          cpu: 8
+          ram: 32768
           disk_profile: small
           net_profile: default
         opencontrail.analytics:
-          cpu: 2
-          ram: 8192
+          cpu: 8
+          ram: 32768
           disk_profile: large
           net_profile: default
         stacklight.log:
-          cpu: 1
-          ram: 2048
+          cpu: 4
+          ram: 8192
           disk_profile: xxlarge
           net_profile: default
         stacklight.server:
-          cpu: 1
-          ram: 2048
+          cpu: 4
+          ram: 8192
           disk_profile: small
           net_profile: default
         stacklight.telemetry:
-          cpu: 1
-          ram: 2048
-          disk_profile: xxlarge
-          net_profile: default
-        cicd.control:
           cpu: 4
-          ram: 4096
-          disk_profile: large
+          ram: 8192
+          disk_profile: xxlarge
           net_profile: default
       cluster:
         internal:
@@ -105,17 +99,17 @@ parameters:
             mdb03:
               image: ${_param:salt_control_xenial_image}
             ctl01:
-              image: ${_param:salt_control_trusty_image}
+              image: ${_param:salt_control_xenial_image}
             ctl02:
-              image: ${_param:salt_control_trusty_image}
+              image: ${_param:salt_control_xenial_image}
             ctl03:
-              image: ${_param:salt_control_trusty_image}
+              image: ${_param:salt_control_xenial_image}
             dbs01:
-              image: ${_param:salt_control_trusty_image}
+              image: ${_param:salt_control_xenial_image}
             dbs02:
-              image: ${_param:salt_control_trusty_image}
+              image: ${_param:salt_control_xenial_image}
             dbs03:
-              image: ${_param:salt_control_trusty_image}
+              image: ${_param:salt_control_xenial_image}
             msg01:
               image: ${_param:salt_control_xenial_image}
             msg02:
@@ -137,30 +131,29 @@ parameters:
     network:
       interface:
         eth0:
-          enabled: true
+          enabled: false
           type: eth
           proto: manual
-          name: ${_param:deploy_nic}
+          name: eth0
         eth1:
           enabled: true
-          type: eth
+          type: slave
           proto: manual
           name: ${_param:primary_first_nic}
-          # master: bond0
-        # eth2:
-        #   enabled: true
-        #   type: slave
-        #   proto: manual
-        #   name: ${_param:primary_second_nic}
-        #   master: bond0
+          master: bond0
+        eth2:
+          enabled: true
+          type: slave
+          proto: manual
+          name: ${_param:primary_second_nic}
+          master: bond0
         br_mgm:
           enabled: true
           proto: static
           type: bridge
-          mtu: 1450
           address: ${_param:deploy_address}
           netmask: ${_param:deploy_network_netmask}
-#          gateway: ${_param:deploy_network_gateway}
+          gateway: ${_param:deploy_network_gateway}
           name_servers:
           - ${_param:dns_server01}
           - ${_param:dns_server02}
@@ -186,9 +179,8 @@ parameters:
           enabled: true
           type: bridge
           proto: static
-          mtu: 1450
-          address: ${_param:single_address}
           gateway: ${_param:ctl_gateway}
+          address: ${_param:single_address}
           netmask: ${_param:control_network_netmask}
           use_interfaces:
           - ${_param:primary_first_nic}

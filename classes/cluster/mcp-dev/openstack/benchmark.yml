@@ -1,4 +1,5 @@
 classes:
+- system.linux.system.repo.mcp.extra
 - cluster.mcp-dev.infra
 parameters:
   linux:

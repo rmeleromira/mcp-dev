@@ -1,41 +1,29 @@
 parameters:
   _param:
+    stacklight_monitor_address: ${_param:cicd_control_address}
+    prometheus_control_address: ${_param:cicd_control_address}
+    #
     kibana_elasticsearch_host: ${_param:stacklight_log_address}
     heka_elasticsearch_host: ${_param:stacklight_log_address}
     heka_influxdb_host: ${_param:stacklight_telemetry_address}
     heka_aggregator_host: ${_param:stacklight_monitor_address}
-    aggregator_port: 5565
     grafana_user: admin
-    grafana_password: h1fs3v07Ek5HFDLG
+    grafana_password: wmdpll8q2pz3lNWR
     cluster_elasticsearch_port: 9200
     cluster_kibana_port: 5601
     cluster_grafana_port: 3000
-    mysql_grafana_password: p36Qkglbi69QXhaC
+    mysql_grafana_password: Y3KB0oaZsKW8QCKm
     grafana_influxdb_host: ${_param:stacklight_telemetry_address}
     elasticsearch_port: 9200
-    influxdb_stacklight_password: hvVPsqd8x36URJaL
-    influxdb_admin_password: kZ1O10weFES4kwqo
+    influxdb_stacklight_password: RN4ihBmHQNStNRFE
+    influxdb_admin_password: eplibD3w1d4M9c3m
     influxdb_port: 8086
     influxdb_database: lma
     influxdb_user: lma
-    influxdb_password: uJajuf2Q53xOSqz5
-    nagios_host: ${_param:stacklight_monitor_address}
-    nagios_status_port: 8001
-    nagios_username: nagiosadmin
-    nagios_password: lG7eddCzsSERhNLo
-    nagios_notification_smtp_server: 127.0.0.1
-    nagios_notification_from: 'nagios@localhost'
-    nagios_notification_email: 'root@localhost'
-    stacklight_log_keepalived_password: SNySx4G7bfBZiEg0
-    stacklight_monitor_keepalived_password: NoOF8ijRPCuUfqrn
-    stacklight_telemetry_keepalived_password: qpW9xZDkQzHGECot
+    influxdb_password: qHMkpWcw199cNbjl
+    stacklight_log_keepalived_password: 66IPOsb986hZWZzz
+    stacklight_telemetry_keepalived_password: tin43fsjtPqdgJcq
     stacklight_environment: ${_param:cluster_domain}
-
-    # Stacklight Monitor
-    stacklight_monitor_address: 192.168.11.70
-    stacklight_monitor_node01_address: 192.168.11.71
-    stacklight_monitor_node02_address: 192.168.11.72
-    stacklight_monitor_node03_address: 192.168.11.73
     stacklight_log_address: 192.168.11.60
     stacklight_log_node01_address: 192.168.11.61
     stacklight_log_node02_address: 192.168.11.62
@@ -45,11 +33,6 @@ parameters:
     stacklight_telemetry_node02_address: 192.168.11.87
     stacklight_telemetry_node03_address: 192.168.11.88
 
-    # stacklight service hostnames
-    stacklight_monitor_hostname: mon
-    stacklight_monitor_node01_hostname: mon01
-    stacklight_monitor_node02_hostname: mon02
-    stacklight_monitor_node03_hostname: mon03
     stacklight_log_hostname: log
     stacklight_log_node01_hostname: log01
     stacklight_log_node02_hostname: log02
@@ -58,33 +41,9 @@ parameters:
     stacklight_telemetry_node01_hostname: mtr01
     stacklight_telemetry_node02_hostname: mtr02
     stacklight_telemetry_node03_hostname: mtr03
-
-    ##Billing
-    #collectd_backend_carbon_host: ${_param:openstack_billing_address}
-    #collectd_backend_carbon_port: 2023
   linux:
     network:
       host:
-        mon01:
-          address: ${_param:stacklight_monitor_node01_address}
-          names:
-          - ${_param:stacklight_monitor_node01_hostname}
-          - ${_param:stacklight_monitor_node01_hostname}.${_param:cluster_domain}
-        mon02:
-          address: ${_param:stacklight_monitor_node02_address}
-          names:
-          - ${_param:stacklight_monitor_node02_hostname}
-          - ${_param:stacklight_monitor_node02_hostname}.${_param:cluster_domain}
-        mon03:
-          address: ${_param:stacklight_monitor_node03_address}
-          names:
-          - ${_param:stacklight_monitor_node03_hostname}
-          - ${_param:stacklight_monitor_node03_hostname}.${_param:cluster_domain}
-        mon:
-          address: ${_param:stacklight_monitor_address}
-          names:
-          - ${_param:stacklight_monitor_hostname}
-          - ${_param:stacklight_monitor_hostname}.${_param:cluster_domain}
         log01:
           address: ${_param:stacklight_log_node01_address}
           names:

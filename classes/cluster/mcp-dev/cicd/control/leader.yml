@@ -2,7 +2,14 @@ classes:
   # Services
   - system.docker.client
   - system.aptly.server.docker
-  - system.aptly.client.publisher
+  # Docker services
+  - system.docker.swarm.stack.aptly
+  - system.docker.swarm.stack.docker
+  - system.docker.swarm.stack.gerrit
+  - system.docker.swarm.stack.jenkins
+  - system.docker.swarm.stack.ldap
+
+
   # Jenkins
   - system.jenkins.master.config
   - system.jenkins.client
@@ -17,6 +24,8 @@ classes:
   # Security
   - system.jenkins.client.security.ldap
   - system.jenkins.client.security.matrix
+  # Slaves
+  - system.jenkins.client.node
   # OpenLDAP
   - system.openldap.client
   - system.openldap.client.people.admin
@@ -28,3 +37,5 @@ classes:
   - system.docker.swarm.master
   - cluster.mcp-dev.infra
   - cluster.mcp-dev.cicd.control
+  - cluster.mcp-dev.stacklight.server
+  - cluster.mcp-dev.stacklight.client

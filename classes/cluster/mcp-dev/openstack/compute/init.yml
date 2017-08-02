@@ -1,5 +1,6 @@
 classes:
 - system.linux.system.repo.ubuntu
+- system.linux.system.repo.saltstack.xenial
 - system.linux.system.repo.mcp.openstack
 - system.linux.system.repo.mcp.extra
 - system.linux.system.repo.mcp.contrail
@@ -21,19 +22,25 @@ parameters:
     cluster_node03_address: ${_param:openstack_control_node03_address}
     opencontrail_compute_address: ${_param:tenant_address}
     nova_vncproxy_url: https://${_param:cluster_public_host}:6080
-    primary_first_nic: eth1
-    primary_second_nic: eth2
+    primary_first_nic: eth2
+    primary_second_nic: eth3
 
   linux:
     network:
+      host:
+        hostname:
+          address: ${_param:single_address}
+          names:
+          - ${linux:network:hostname}
+          - ${linux:network:fqdn}
       interface:
         eth1:
-          mtu: 1450
+          mtu: 9000
           enabled: true
-          type: eth
+          type: slave
           proto: manual
           name: ${_param:primary_first_nic}
-#          master: bond0
+          master: bond0
         eth2:
           mtu: 9000
           enabled: true
@@ -41,38 +48,38 @@ parameters:
           proto: manual
           name: ${_param:primary_second_nic}
           master: bond0
-#        bond0:
-#          mtu: 9000
-#          enabled: true
-#          proto: manual
-#          type: bond
-#          use_interfaces:
-#          - ${_param:primary_first_nic}
-#          - ${_param:primary_second_nic}
-#          slaves: ${_param:primary_first_nic} ${_param:primary_second_nic}
-#          mode: active-backup
-#        bond0.1:
-#          mtu: 9000
-#          name: bond0.${_param:control_vlan}
-#          enabled: true
-#          proto: static
-#          type: vlan
-#          use_interfaces:
-#          - bond0
-#          address: ${_param:single_address}
-#          netmask: ${_param:control_network_netmask}
-#        bond0.2:
-#          mtu: 9000
-#          name: bond0.${_param:tenant_vlan}
-#          enabled: true
-#          proto: manual
-#          type: vlan
-#          use_interfaces:
-#          - bond0
+        bond0:
+          mtu: 9000
+          enabled: true
+          proto: manual
+          type: bond
+          use_interfaces:
+          - ${_param:primary_first_nic}
+          - ${_param:primary_second_nic}
+          slaves: ${_param:primary_first_nic} ${_param:primary_second_nic}
+          mode: active-backup
+        bond0.1:
+          mtu: 9000
+          name: bond0.${_param:control_vlan}
+          enabled: true
+          proto: static
+          type: vlan
+          use_interfaces:
+          - bond0
+          address: ${_param:single_address}
+          netmask: ${_param:control_network_netmask}
+        bond0.2:
+          mtu: 9000
+          name: bond0.${_param:tenant_vlan}
+          enabled: true
+          proto: manual
+          type: vlan
+          use_interfaces:
+          - bond0
         vhost0:
           enabled: true
           type: eth
-          mtu: 1450
+          mtu: 9000
           address: ${_param:tenant_address}
           netmask: ${_param:tenant_network_netmask}
           gateway: ${_param:tenant_network_gateway}

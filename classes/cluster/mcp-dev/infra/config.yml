@@ -1,5 +1,7 @@
 classes:
 - system.linux.system.repo.mcp.salt
+- system.linux.system.repo.mcp.extra
+- system.linux.system.repo.mcp.openstack
 - system.linux.system.repo.ubuntu
 - system.linux.system.repo.glusterfs
 - system.openssh.client.lab
@@ -9,7 +11,11 @@ classes:
 - system.salt.minion.ca.salt_master
 - system.salt.master.api
 - system.reclass.storage.salt
+- system.xtrabackup.server.single
+- system.cassandra.backup.server.single
+- system.zookeeper.backup.server.single
 - system.reclass.storage.system.physical_control_cluster
+- system.reclass.storage.system.infra_maas_single
 - system.reclass.storage.system.opencontrail_analytics_cluster
 - system.reclass.storage.system.opencontrail_control_cluster
 - system.reclass.storage.system.openstack_control_cluster
@@ -17,9 +23,9 @@ classes:
 - system.reclass.storage.system.openstack_database_cluster
 - system.reclass.storage.system.openstack_message_queue_cluster
 - system.reclass.storage.system.openstack_telemetry_cluster
+- system.reclass.storage.system.openstack_benchmark_single
 - system.linux.system.repo.mcp.extra
 - system.reclass.storage.system.stacklight_log_cluster
-- system.reclass.storage.system.stacklight_monitor_cluster
 - system.reclass.storage.system.stacklight_telemetry_cluster
 - system.reclass.storage.system.cicd_control_cluster
 - cluster.mcp-dev.infra
@@ -34,20 +40,9 @@ parameters:
     linux_system_codename: xenial
     salt_api_password_hash: "$6$jCBJiEPZvXYaYr9.$tdNvZbCfpptEq9oprSqTT0V3tiQPNK9W57j92lxxwqkZ82nSqNxheGkTg4DLeui1GroVgBF0zTSZ689qFEKRk0"
     salt_master_host: ${_param:infra_config_address}
-    infra_maas_node01_hostname: mas01
-    infra_maas_node01_deploy_address: 192.168.10.14
   reclass:
     storage:
       node:
-        infra_maas_node01:
-          name: ${_param:infra_maas_node01_hostname}
-          domain: ${_param:cluster_domain}
-          classes:
-          - cluster.${_param:cluster_name}.infra.maas
-          params:
-            salt_master_host: ${_param:infra_config_deploy_address}
-            linux_system_codename: xenial
-            single_address: ${_param:infra_maas_node01_deploy_address}        
         infra_kvm_node01:
           params:
             keepalived_vip_priority: 100
@@ -60,19 +55,31 @@ parameters:
           params:
             keepalived_vip_priority: 102
             linux_system_codename: xenial
-        stacklight_log_node01:
+        opencontrail_control_node01:
           classes:
-          - system.elasticsearch.client.single
-        stacklight_monitor_node01:
-          classes:
-          - system.grafana.client.single
-          - system.kibana.client.single
+          - cluster.${_param:cluster_name}.opencontrail.control_init
         openstack_control_node01:
+          params:
+            linux_system_codename: xenial
           classes:
           - cluster.${_param:cluster_name}.openstack.control_init
+        openstack_control_node02:
+          params:
+            linux_system_codename: xenial
+        openstack_control_node03:
+          params:
+            linux_system_codename: xenial
         openstack_database_node01:
+          params:
+            linux_system_codename: xenial
           classes:
           - cluster.${_param:cluster_name}.openstack.database_init
+        openstack_database_node02:
+          params:
+            linux_system_codename: xenial
+        openstack_database_node03:
+          params:
+            linux_system_codename: xenial
         openstack_telemetry_node01:
           params:
             linux_system_codename: xenial
@@ -97,12 +104,6 @@ parameters:
         openstack_proxy_node02:
           params:
             linux_system_codename: xenial
-        openstack_control_node01:
-          classes:
-          - cluster.${_param:cluster_name}.openstack.control_init
-        openstack_database_node01:
-          classes:
-          - cluster.${_param:cluster_name}.openstack.database_init
         openstack_compute_rack01:
           name: ${_param:openstack_compute_rack01_hostname}<<count>>
           domain: ${_param:cluster_domain}
