@@ -1,0 +1,13 @@
+classes:
+- cluster.mcp-dev.openstack.benchmark
+parameters:
+  _param:
+    linux_system_codename: xenial
+    salt_master_host: 192.168.10.10
+    single_address: 10.167.4.85
+  linux:
+    system:
+      name: bmk01
+      domain: mcp-dev.local
+      cluster: default
+      environment: prd
